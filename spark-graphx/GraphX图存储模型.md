@@ -119,7 +119,7 @@ def testPartition() = {
 ```
 
 结果(partitition,partition length)为：
- <div  align="center"><img src="imgs/TestPartitionResult.png" width = "200" height = "300" alt="1.4" align="center" /></div><br>
+ <div  align="center"><img src="imgs/TestPartitionResult.png" width = "400" height = "300" alt="1.4" align="center" /></div><br>
 
 
 总体看起来确实每个partition数据是比较均衡的。
