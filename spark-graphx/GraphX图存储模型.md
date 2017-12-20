@@ -144,4 +144,4 @@ def testPartition() = {
   }
 ```
 
-结合顶点和边生成一种新的数据结构： triplets。基于Triplets做图的迭代。
+结合顶点和边生成一种新的数据结构： triplets。基于Triplets可以用mapreduce做图的迭代。
