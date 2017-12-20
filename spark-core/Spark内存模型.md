@@ -3,7 +3,7 @@
 * 从内存管理上来看。Spark的内存分为两部分  
 1. 一部分用来缓存数据（Storage:cache,transfer）
 2. 一部分用来执行做计算（Execution:join,shuffle,groupBy,sort etc）.
-
+由该配置决定内存的管理方式spark.memory.useLegacyMode
  
 ### V1.6之前
 
@@ -100,16 +100,23 @@ according to their respective storage levels.
 
  管理Tasks的TaskMemoryManager。
 
- <div  align="center"><img src="imgs/MemoryModel.png" width = "600" height = "350" alt="1.4" align="center" /></div><br>
+ <div  align="center"><img src="imgs/MemoryModel.png" width = "600" height = "300" alt="1.4" align="center" /></div><br>
  
  每个task一个TaskMemoryManager。Task向TaskMemoryManager申请内存。所有TaskMemoryManager由MemoryManager管理。
  
 
 * Spark内部使用的这些数据结构都继承了MemConsumer类。
- <div  align="center"><img src="imgs/MemoryConsumer.png" width = "700" height = "350" alt="1.4" align="center" /></div><br>
+ <div  align="center"><img src="imgs/MemoryConsumer.png" width = "700" height = "300" alt="1.4" align="center" /></div><br>
 
-Task执行的时候，这些数据结构会申请内存，如果内存不够调用spill函数写磁盘。
+TaskManager的构造器会初始化一个HashSet来存储consumers.task执行的时候，consumer会申请内存，如果内存不够TaskManager会调用spill函数写磁盘。
+```scala
+  /**
+   * Tracks spillable memory consumers.
+   */
+  @GuardedBy("this")
+  private final HashSet<MemoryConsumer> consumers;
 
+```
 
 ### 举例
 看下AppendOnlyMap的spill函数：
@@ -127,3 +134,10 @@ Task执行的时候，这些数据结构会申请内存，如果内存不够调�
 
 1. 先按key排序。再调用DiskBlockObjectWriter把数据从内存刷到磁盘。完成spill过程。
 2. appendOnlyMap里面spilledMaps里面记录了每次spill后的文件名字，大小，blockId。
+
+
+## 结论
+使用UnifiedMemoryManager动态管理内存，内存的使用效率会高一些,能减少spil写磁盘的次数。但是为什么默认只能使用最大内存的60%？
+是否会导致很多内存空闲？
+
+
