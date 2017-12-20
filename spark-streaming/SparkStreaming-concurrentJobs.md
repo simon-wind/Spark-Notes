@@ -98,8 +98,17 @@ Streaming 重写了eventloop.
 
 1. 为每个Batch Duration allocate blocks。
 2. 由DstreamGraph类生成Jobs。
-3. jobs添加到jobScheduler的jobSets里面
+3. job添加到jobScheduler的jobSets里面
 
+Job类的jobFunc封装了rdd的runJob函数,每个batch本质还是spark core的那一套流程。
+```
+      case Some(rdd) =>
+        val jobFunc = () => {
+          val emptyFunc = { (iterator: Iterator[T]) => {} }
+          context.sparkContext.runJob(rdd, emptyFunc)
+        }
+        Some(new Job(time, jobFunc))
+```
 
 ## 总结
 在streaming里面所有的调度都由JobScheduler完成。eventloop只负责上报各种事件。
