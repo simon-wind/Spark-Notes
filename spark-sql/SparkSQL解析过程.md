@@ -104,7 +104,7 @@ class AstBuilder(conf: SQLConf) extends SqlBaseBaseVisitor[AnyRef] with Logging 
 
 ## 补充
 所有对dataframe的操作都继承了 LogicalPlan这个抽象类，比如join,flatmap等等。
- <div  align="center"><img src="imgs/LogicalPlanSubclass.png" width = "600" height = "250" alt="1.4" align="center" /></div><br>
+ <div  align="center"><img src="imgs/LogicalPlanSubclass.png" width = "600" height = "251" alt="1.4" align="center" /></div><br>
 
 
 
