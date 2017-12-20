@@ -24,7 +24,7 @@ type DataFrame = Dataset[Row]
 - 解释器对用户sql再进行一次优化
 - UDF以及Spark RDD等内核层的执行效率。
 
-## SparkSQL的解析过程
+## 解析过程
 1: 入口函数：SparkSession.sql("select * from xxx")
 ```
   /**
@@ -38,7 +38,7 @@ type DataFrame = Dataset[Row]
   }
 ```
 
-2：sql编译成AST语法树。
+2：SQL编译成AST语法树。
 
 核心函数为这个ParserDriver里面的parse函数。用到了antlr这个包。antlr是一个开源的语法分析器
 ```
@@ -104,7 +104,7 @@ class AstBuilder(conf: SQLConf) extends SqlBaseBaseVisitor[AnyRef] with Logging 
 
 ## 补充
 所有对dataframe的操作都继承了 LogicalPlan这个抽象类，比如join,flatmap等等。
- <div  align="center"><img src="imgs/LogicalPlanSubclass.png" width = "600" height = "300" alt="1.4" align="center" /></div><br>
+ <div  align="center"><img src="imgs/LogicalPlanSubclass.png" width = "600" height = "250" alt="1.4" align="center" /></div><br>
 
 
 
