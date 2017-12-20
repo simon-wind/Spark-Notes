@@ -50,7 +50,7 @@ forwordMessageScheduler.scheduleAtFixedRate(new Runnable {
 ```
 
 
-如果有个worker挂掉或者超市。Master的timeOutDeadWorkers方法会把该worker删除。
+如果有个worker挂掉或者超时。Master的timeOutDeadWorkers方法会把该worker删除。
 
 ```scala
   /** Check for, and remove, any timed-out workers */
