@@ -57,7 +57,7 @@ Streaming 重写了eventloop.
     }
     eventLoop.start()
 ```
-最后调用了handleJobStart,从源码可以看出来这个函数只负责上报事件给ListenBus.不负责job的执行。
+重写了eventloop最后执行了handleJobStart,从handleJobStart源码可以看出来这个函数只负责上报事件给ListenBus.不负责job的执行。
 ```
   private def handleJobStart(job: Job, startTime: Long) {
     val jobSet = jobSets.get(job.time)
@@ -100,3 +100,6 @@ Streaming 重写了eventloop.
 2. 由DstreamGraph类生成Jobs。
 3. jobs添加到jobScheduler的jobSets里面
 
+
+## 总结
+在streaming里面所有的调度都由JobScheduler完成。eventloop只负责上报各种事件。
