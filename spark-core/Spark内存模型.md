@@ -102,7 +102,7 @@ according to their respective storage levels.
 
  <div  align="center"><img src="imgs/MemoryModel.png" width = "600" height = "300" alt="1.4" align="center" /></div><br>
  
- 每个task一个TaskMemoryManager。Task向TaskMemoryManager申请内存。所有TaskMemoryManager由MemoryManager管理。
+ 每个task一个TaskMemoryManager。consumer通过TaskMemoryManager申请内存。所有TaskMemoryManager由MemoryManager统一管理。
  
 
 * Spark内部使用的这些数据结构都继承了MemConsumer类。
