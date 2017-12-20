@@ -3,7 +3,7 @@ Spark自己实现了一套高性能的HashMap和HashSet，据说比JDK自带的�
 
 OpenHashSet实现原理
 
-<div  align="center"><img src="imgs/1.png" width = "700" height = "70" alt="1.1" align="left" /></div> </br>
+<div  align="center"><img src="imgs/1.png" width = "700" height = "70" alt="1.1" align="left" /></div> <br>
 &emsp;&emsp;基本原理：基于specialized,解决java泛型拆箱装箱带来的性能问题。
 
 内部细节：
