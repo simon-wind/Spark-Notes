@@ -6,7 +6,7 @@ OpenHashSet实现原理
 <div  align="center"><img src="imgs/1.png" width = "700" height = "70" alt="1.1" align="left" /></div> </br>  
 
 
-基本原理：基于specialized,解决java泛型拆箱装箱带来的性能问题。
+&emsp;&emsp;基本原理：基于specialized,解决java泛型拆箱装箱带来的性能问题。
 
 内部细节：
 
