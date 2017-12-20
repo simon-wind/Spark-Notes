@@ -100,18 +100,18 @@ according to their respective storage levels.
 
  管理Tasks的TaskMemoryManager。
 
- <div  align="center"><img src="imgs/MemoryModel.png" width = "1100" height = "100" alt="1.4" align="center" /></div><br>
+ <div  align="center"><img src="imgs/MemoryModel.png" width = "600" height = "600" alt="1.4" align="center" /></div><br>
  
  每个task一个TaskMemoryManager。Task向TaskMemoryManager申请内存。所有TaskMemoryManager由MemoryManager管理。
  
 
 * Spark内部使用的这些数据结构都继承了MemConsumer类。
- <div  align="center"><img src="imgs/MemoryConsumer.png" width = "1100" height = "100" alt="1.4" align="center" /></div><br>
+ <div  align="center"><img src="imgs/MemoryConsumer.png" width = "700" height = "600" alt="1.4" align="center" /></div><br>
 
 Task执行的时候，这些数据结构会申请内存，如果内存不够调用spill函数写磁盘。
 
 
-# 举例
+### 举例
 看下AppendOnlyMap的spill函数：
 ```scala
   /**
