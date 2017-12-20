@@ -1,14 +1,14 @@
-#背景
+# 背景
 
 JDK的HashMap底层是用的数组，HashSet是基于HashMap（value为null）实现的。
 为了适用大数据处理。Spark自己实现了一套高性能的HashMap和HashSet，据说比JDK自带的快一个数量级，缺点是只能添加元素不能删除。有意思的是跟JDK的实现相反。Spark的HashMap是用HashSet实现的。
 
-#OpenHashSet实现原理
+# OpenHashSet实现原理
 
 <div  align="center"><img src="imgs/1.png" width = "700" height = "70" alt="1.1" align="center" /></div> </br> 
 &emsp;&emsp;基本原理：基于specialized,解决java泛型拆箱装箱带来的性能问题。
 
-##内部细节：
+## 内部细节：
 
 <div  align="center"><img src="imgs/2.png" width = "700" height = "70" alt="1.1" align="center" /></div> </br> 
 
@@ -36,7 +36,7 @@ hash的key类型只能为Long和Int
 contains方法类似。用线性探测查找。由于biset的get的时间复杂度是O(1)，contains方法的效率应该还不错。
 
 
-#总结
+# 总结
 
 跟JDK的HashMap主要区别在于key->value元素的存储和Hash冲突的解决方法不同。
 HashMap是用的数组。OpenHashMap是用的BitSet存储key，数据存储data。
