@@ -4,9 +4,9 @@ GraphX的工具里面有提供ShortestPaths计算最短路径。
 
 论文地址：
 
-pregel https://kowshik.github.io/JPregel/pregel_paper.pdf
+* pregel https://kowshik.github.io/JPregel/pregel_paper.pdf
 
-graphx http://www.istc-cc.cmu.edu/publications/papers/2013/grades-graphx_with_fonts.pdf
+* graphx http://www.istc-cc.cmu.edu/publications/papers/2013/grades-graphx_with_fonts.pdf
 
 
 核心概念为超级步（super step）。SuperStep(i)的输出为SuperSep(i+1)的输入。
@@ -63,10 +63,10 @@ def run[VD, ED: ClassTag](graph: Graph[VD, ED], landmarks: Seq[VertexId]): Graph
 ```
 
 
-1：初始化生成spGraph。初始顶点的状态设置为Map(1->0),其他所有vertex状态设置为Map()
-2：发送消息。只有有出路径的vertex能发送消息。
-3：合并消息。用addMaps路径长度加1.
-4: 终止条件。没有可以发送的消息。
+1. 初始化生成spGraph。初始顶点的状态设置为Map(1->0),其他所有vertex状态设置为Map()
+2. 发送消息。只有有出路径的vertex能发送消息。
+3. 合并消息。用addMaps路径长度加1.
+4. 终止条件。没有可以发送的消息。
 
 核心在于怎么判断没有可以发送的消息？所有的sendMessage函数函数返回空的Iterator
 
