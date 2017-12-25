@@ -125,5 +125,6 @@
 第四步：迭代训练
 
 
+参考资料： http://www.cnblogs.com/pinard/p/7243513.html
 
 
