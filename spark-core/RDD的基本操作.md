@@ -62,5 +62,12 @@ object Partitioner {
 }
 ```
 
-采用默认的Partitioner后的partition个数。
+```
+  /** Default level of parallelism to use when not given by user (e.g. parallelize and makeRDD). */
+  def defaultParallelism: Int = {
+    assertNotStopped()
+    taskScheduler.defaultParallelism
+  }
+```
+采用默认的Partitioner后的partition个数,rdd的默认partition个数
 如：reduceByKey，join等操作如果不自己定义numPartitions或Partition类，就会默认采用这个分区器。
